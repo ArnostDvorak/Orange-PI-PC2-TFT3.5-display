@@ -1,0 +1,26 @@
+// rpi-tv HAT
+
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "allwinner,sun50i-h5";
+
+	fragment@0 {
+		target = <&spi1>;
+		__overlay__ {
+			/* needed to avoid dtc warning */
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			status = "okay";
+
+			cxd2880@0 {
+				compatible = "sony,cxd2880";
+				reg = <0>; /* CE0 */
+				spi-max-frequency = <50000000>;
+				status = "okay";
+			};
+		};
+	};
+};
